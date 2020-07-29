@@ -1,14 +1,13 @@
 import React from 'react';
 function ADDitems(props) {
-    console.log(props);
-    let { elements, handleDelete, handleComplete } = props;
+    let { elements, handleDelete, handleComplete, handleEdit } = props;
     let itemsHtml = elements.map((item) => {
         return (
             <div key={item.id}>
                 <form>
-                    <input defaultValue={item.text} id={item.id} readOnly={true} />
+                    <input defaultValue={item.text} id={item.id} readOnly={item.readOnly} />
                 </form>
-                <button>Edit</button>
+                <button onClick={(e) => { handleEdit(e, item.id, item.readOnly) }}>Edit</button>
                 <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 <button onClick={() => { handleComplete(item.id) }}>Mark as Done!</button>
                 <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>

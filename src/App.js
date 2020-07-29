@@ -30,7 +30,9 @@ class App extends Component {
     let items = [...this.state.items];
     items.push({
       text: text,
-      id: id
+      id: id,
+      readOnly: true
+
     });
     this.setState({
       items: items
@@ -73,6 +75,34 @@ class App extends Component {
       completedItemsList: completedItemsList
     })
   }
+  handleEdit = (e, id, readOnly) => {
+    if (readOnly === true) {
+      e.target.innerHTML = 'Save';
+      let items = [...this.state.items];
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].id === id) {
+          items[i].readOnly = false;
+        }
+      }
+      this.setState({
+        items: items
+      });
+    } else {
+      let newText = document.getElementById(id.toString()).value;
+      if (newText === "") { return; }
+      e.target.innerHTML = 'Edit';
+      let items = [...this.state.items];
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].id === id) {
+          items[i].text = newText;
+          items[i].readOnly = true;
+        }
+      }
+      this.setState({
+        items: items
+      });
+    }
+  }
 
   render() {
     return (
@@ -84,7 +114,7 @@ class App extends Component {
         </form>
         <br />
         <h2>Active</h2>
-        <ADDitems elements={this.state.items} handleDelete={this.handleDelete} handleComplete={this.handleComplete} />
+        <ADDitems elements={this.state.items} handleDelete={this.handleDelete} handleComplete={this.handleComplete} handleEdit={this.handleEdit} />
         <h2>Completed</h2>
         <CompletedItems completedItemsList={this.state.completedItemsList} handleDelete={this.handleDelete} />
       </div>
