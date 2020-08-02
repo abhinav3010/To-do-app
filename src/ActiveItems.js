@@ -25,6 +25,7 @@ function ActiveItems(props) {
                                         readOnly={!(item.isEditable)}
                                     />
                                     <button
+                                        type='button'
                                         className="waves-effect blue btn-small"
                                         onClick={(e) => { handleEdit(item.id) }}
                                     >
@@ -32,11 +33,12 @@ function ActiveItems(props) {
                                     </button>
                                     <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                     <button
+                                        type='button'
                                         className="waves-effect blue btn-small"
                                         onClick={() => { handleDelete(item.id) }}
                                     >
                                         Delete
-                            </button>
+                                    </button>
                                 </span>
                             </label>
                         </form>
