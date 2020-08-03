@@ -43,10 +43,6 @@ function ActiveItems(props) {
                             </label>
                         </form>
                         <br />
-                        <div>
-
-                            <div>&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                        </div>
                     </div>
                 );
             })}
